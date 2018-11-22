@@ -15,8 +15,8 @@ source:
   sha256: e1109e5f7a2bbe04509ecf0bcbf178b62f0b7121d2e4cc3bdb7059ec38c3d88f
 
 build:
-  number: 0
-  skip: true  # [win32]
+  noarch: generic
+  number: 1000
   rpaths:
     - lib/R/lib/
     - lib/
@@ -43,8 +43,7 @@ about:
     frames are automatically printed as tables, and the help() pages can also be rendered
     in 'knitr' documents.
   license_family: GPL
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-2'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
