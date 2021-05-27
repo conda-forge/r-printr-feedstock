@@ -1,5 +1,4 @@
 {% set version = "0.1.1" %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,36 +7,38 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: printr_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/printr_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/printr/printr_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/printr_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/printr/printr_{{ version }}.tar.gz
   sha256: 570e77c19ba84156bd91f65120066efeeafdc78dff7fbc539164ca3666383d26
 
 build:
-  noarch: generic
+  merge_build_host: True  # [win]
   number: 0
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+  host:
     - r-base
     - r-knitr >=1.16
-
   run:
     - r-base
     - r-knitr >=1.16
 
 test:
   commands:
-    - $R -e "library('printr')"  # [not win]
+    - $R -e "library('printr')"           # [not win]
     - "\"%R%\" -e \"library('printr')\""  # [win]
 
 about:
   home: https://yihui.name/printr
-  license: GPL2 and GPL3
+  license: GPL-2.0-or-later
   summary: Extends the S3 generic function knit_print() in 'knitr' to automatically print some objects using an appropriate format such as Markdown or LaTeX. For example, data frames are automatically printed as tables, and the help() pages can also be rendered in 'knitr' documents.
   license_family: GPL
   license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
@@ -45,8 +46,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
