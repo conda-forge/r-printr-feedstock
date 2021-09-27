@@ -1,4 +1,4 @@
-{% set version = "0.1.1" %}
+{% set version = "0.2" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/printr_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/printr/printr_{{ version }}.tar.gz
-  sha256: 570e77c19ba84156bd91f65120066efeeafdc78dff7fbc539164ca3666383d26
+  sha256: 8a64426070910c09c45378e3d701466462a08b472158e02b3b2d4f7d2a1ac551
 
 build:
-  merge_build_host: True  # [win]
+  merge_build_host: true  # [win]
   number: 0
   noarch: generic
   rpaths:
