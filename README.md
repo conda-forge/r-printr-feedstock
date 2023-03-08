@@ -1,11 +1,11 @@
-About r-printr
-==============
+About r-printr-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-printr-feedstock/blob/main/LICENSE.txt)
 
 Home: https://yihui.name/printr
 
 Package license: GPL-2.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-printr-feedstock/blob/main/LICENSE.txt)
 
 Summary: Extends the S3 generic function knit_print() in 'knitr' to automatically print some objects using an appropriate format such as Markdown or LaTeX. For example, data frames are automatically printed as tables, and the help() pages can also be rendered in 'knitr' documents.
 
